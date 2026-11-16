@@ -143,11 +143,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 .js [data-reveal] img{clip-path:inset(0 0 100% 0);transform:scale(1.06);transition:clip-path 1s var(--ease),transform 1.4s var(--ease)}
 .js [data-reveal].is-in img{clip-path:inset(0);transform:none}
 
+/* ---- sky block behind photographs ---------------------------------------- */
+.accent{position:relative;--ao:clamp(12px,1.5vw,24px);--as:40%}
+.accent::before{content:"";position:absolute;width:var(--as);aspect-ratio:1/1;background:var(--sky);transition:transform 1s var(--ease) .4s}
+.accent > .frame{position:relative;z-index:1;background:#D9D6D2}
+.accent--tr::before{top:calc(-1 * var(--ao));right:calc(-1 * var(--ao))}
+.accent--tl::before{top:calc(-1 * var(--ao));left:calc(-1 * var(--ao))}
+.accent--bl::before{bottom:calc(-1 * var(--ao));left:calc(-1 * var(--ao))}
+.js .accent--tr[data-reveal]:not(.is-in)::before{transform:translate(calc(-1 * var(--ao)),var(--ao))}
+.js .accent--tl[data-reveal]:not(.is-in)::before{transform:translate(var(--ao),var(--ao))}
+.js .accent--bl[data-reveal]:not(.is-in)::before{transform:translate(var(--ao),calc(-1 * var(--ao)))}
+
 /* ---- about --------------------------------------------------------------- */
 .about{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);row-gap:40px;align-items:center}
 .about__media{grid-column:1/span 7;position:relative;width:100%;max-width:1280px;padding-bottom:clamp(56px,7vw,120px)}
-.about__main{width:80%;aspect-ratio:4/3}
-.about__inset{position:absolute;right:0;bottom:0;width:36%;aspect-ratio:4/5;outline:clamp(8px,.9vw,14px) solid var(--paper)}
+.about__main{width:80%;--as:30%}
+.about__main .frame{aspect-ratio:4/3}
+.about__inset{position:absolute;z-index:2;right:0;bottom:0;width:36%;aspect-ratio:4/5;outline:clamp(8px,.9vw,14px) solid var(--paper)}
 .about__text{grid-column:8/span 5}
 .facts{margin-top:clamp(28px,3vw,44px)}
 .facts div{display:grid;grid-template-columns:8.5rem 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
@@ -159,7 +171,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .section-head{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);row-gap:20px;align-items:end;margin-bottom:clamp(40px,6vw,88px)}
 .section-head .title{grid-column:1/span 7}
 .section-head .lead,.section-head .prose{grid-column:8/span 5}
-.formats{position:relative}
+.formats{position:relative;--ao:clamp(12px,1.5vw,24px)}
+.formats::before{content:"";position:absolute;top:calc(-1 * var(--ao));right:calc(-1 * var(--ao));width:15%;aspect-ratio:1/1;background:var(--sky)}
 .formats__list{width:50%}
 .format{border-top:1px solid var(--line)}
 .format:last-child{border-bottom:1px solid var(--line)}
@@ -171,7 +184,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .format p{max-width:46ch;padding-bottom:24px;color:var(--muted);opacity:.6;transition:opacity .3s,transform .5s var(--ease)}
 .format.is-active .format__title{color:var(--red);transform:translateX(14px)}
 .format.is-active p{opacity:1;transform:translateX(14px)}
-.format figure{position:absolute;top:0;right:0;width:42%;height:calc(100% - 52px);min-height:420px;clip-path:inset(100% 0 0 0);transition:clip-path .9s var(--ease) .9s;z-index:1}
+.format figure{position:absolute;top:0;right:0;width:42%;background:#CFCBC6;height:calc(100% - 52px);min-height:420px;clip-path:inset(100% 0 0 0);transition:clip-path .9s var(--ease) .9s;z-index:1}
 .format.is-active figure{clip-path:inset(0);z-index:2;transition:clip-path .9s var(--ease)}
 .format figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.14);transition:transform 1.2s var(--ease) .9s}
 .format.is-active figure img{transform:scale(1);transition:transform 6.5s cubic-bezier(.2,.6,.3,1)}
@@ -190,8 +203,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .duo__title{grid-column:1/-1;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--duo-gap)}
 .duo__title span:last-child{grid-column:3}
 .duo__media{grid-column:2;grid-row:1/span 2;position:relative;width:min(90%,600px);justify-self:center}
-.duo__media::before{content:"";position:absolute;right:-20px;top:-20px;width:40%;aspect-ratio:1/1;background:var(--sky)}
-.duo__media .frame{position:relative;aspect-ratio:4/5}
+.duo__media .frame{aspect-ratio:4/5}
 .duo__text{grid-column:1;grid-row:2;align-self:end}
 .duo__text .prose{margin-top:16px;color:var(--muted)}
 .promises{grid-column:3;grid-row:2;align-self:end;font-weight:700;font-size:clamp(1.375rem,2.15vw,2.25rem);line-height:1.05;letter-spacing:-.028em}
@@ -228,6 +240,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .card--wide .frame{aspect-ratio:2/1}
 .card--tall{grid-column:span 5}
 .card--tall .frame{aspect-ratio:10/7}
+.card .accent{--as:24%}
+.card--tall .accent{--as:32%}
 .card__title{margin-top:14px;font-family:var(--display);font-weight:500;font-size:1.125rem;letter-spacing:-.01em}
 .card__meta{color:var(--muted);font-size:.9375rem}
 
@@ -329,7 +343,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   .format__btn{padding-top:16px;cursor:default}
   .format .format__title,.format.is-active .format__title{color:var(--ink);transform:none}
   .format p,.format.is-active p{opacity:1;transform:none}
-  .format__bar,.formats__caption{display:none}
+  .format__bar,.formats__caption,.formats::before{display:none}
   .format figure img,.format.is-active figure img{transform:none}
   .format p{padding-bottom:0}
 
@@ -404,6 +418,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   .ticker{animation:none;flex-wrap:wrap;width:auto;row-gap:10px;padding-inline:var(--gutter)}
   .ticker span[aria-hidden]{display:none}
   .js [data-reveal] img,.js .hero__media,.js .hero__text > *,.js .hero .pillars,.js [data-lines] .line__in,.js [data-rise],.js [data-stagger] > *,.format figure{transition:none!important;clip-path:none;transform:none;opacity:1}
+  .accent::before{transition:none!important;transform:none!important}
   .slide,.pillar,.direct a,.direct__go{transition:none!important;transform:none!important}
   .steps::before,.step,.step::before,.step p{transition:none!important}
   .pillar__bar{animation:none!important}
@@ -490,8 +505,10 @@ button,input,select,textarea{font:inherit;color:inherit}
     </div>
     <div class="about">
       <div class="about__media">
-        <div class="frame about__main" data-reveal>
-          <img src="https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=1600" srcset="https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=800 800w, https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=1600 1600w, https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=2400 2400w" sizes="(max-width:960px) 84vw, 48vw" alt="Lisbon rooftops with the dome of the National Pantheon in the distance" loading="lazy" decoding="async">
+        <div class="about__main accent accent--bl" data-reveal>
+          <div class="frame">
+            <img src="https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=1600" srcset="https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=800 800w, https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=1600 1600w, https://images.unsplash.com/photo-1501927023255-9063be98970c?auto=format&amp;fit=crop&amp;q=72&amp;w=2400 2400w" sizes="(max-width:960px) 84vw, 48vw" alt="Lisbon rooftops with the dome of the National Pantheon in the distance" loading="lazy" decoding="async">
+          </div>
         </div>
         <div class="frame about__inset" data-reveal>
           <img src="https://images.unsplash.com/photo-1768982417286-861510e72847?auto=format&amp;fit=crop&amp;q=72&amp;w=900" srcset="https://images.unsplash.com/photo-1768982417286-861510e72847?auto=format&amp;fit=crop&amp;q=72&amp;w=480 480w, https://images.unsplash.com/photo-1768982417286-861510e72847?auto=format&amp;fit=crop&amp;q=72&amp;w=900 900w, https://images.unsplash.com/photo-1768982417286-861510e72847?auto=format&amp;fit=crop&amp;q=72&amp;w=1350 1350w" sizes="(max-width:960px) 40vw, 22vw" alt="A sound engineer adjusting a mixing console during set-up" loading="lazy" decoding="async">
@@ -618,8 +635,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   <div class="wrap">
     <div class="duo">
       <h2 class="title duo__title"><span>Creative <br>Thinking.</span><span>Operational <br>Precision.</span></h2>
-      <figure class="duo__media">
-        <div class="frame" data-reveal>
+      <figure class="duo__media accent accent--tr" data-reveal>
+        <div class="frame">
           <img src="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000" srcset="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=500 500w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000 1000w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1500 1500w" sizes="(max-width:960px) 90vw, 30vw" alt="A stage set with chairs and a table under blue spotlights" loading="lazy" decoding="async">
         </div>
       </figure>
@@ -698,12 +715,12 @@ button,input,select,textarea{font:inherit;color:inherit}
     </div>
     <div class="work">
       <article class="card card--wide">
-        <div class="frame" data-reveal><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=1500" srcset="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=750 750w, https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=1500 1500w, https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=2250 2250w" sizes="(max-width:960px) 100vw, 58vw" alt="A ballroom set with round tables under chandeliers" loading="lazy" decoding="async"></div>
+        <div class="accent accent--tl" data-reveal><div class="frame"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=1500" srcset="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=750 750w, https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=1500 1500w, https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&amp;fit=crop&amp;q=72&amp;w=2250 2250w" sizes="(max-width:960px) 100vw, 58vw" alt="A ballroom set with round tables under chandeliers" loading="lazy" decoding="async"></div></div>
         <h3 class="card__title">Project to be confirmed</h3>
         <p class="card__meta">Gala dinner, city, year</p>
       </article>
       <article class="card card--tall">
-        <div class="frame" data-reveal><img src="https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1100" srcset="https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=550 550w, https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1100 1100w, https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1650 1650w" sizes="(max-width:960px) 50vw, 42vw" alt="Light beams crossing a dark venue above a stage" loading="lazy" decoding="async"></div>
+        <div class="accent accent--tr" data-reveal><div class="frame"><img src="https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1100" srcset="https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=550 550w, https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1100 1100w, https://images.unsplash.com/photo-1670028514318-0ac718c0590d?auto=format&amp;fit=crop&amp;q=72&amp;w=1650 1650w" sizes="(max-width:960px) 50vw, 42vw" alt="Light beams crossing a dark venue above a stage" loading="lazy" decoding="async"></div></div>
         <h3 class="card__title">Project to be confirmed</h3>
         <p class="card__meta">Brand experience, city, year</p>
       </article>
@@ -878,7 +895,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 </main>
 
-<footer class="footer room room--ink">
+<footer class="footer room room--red">
   <div class="wrap">
     <div class="footer__top">
       <a class="footer__mark" href="#top" aria-label="Biloba Events, back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="366 459 737 350" fill="currentColor" role="img" aria-hidden="true" focusable="false"><path transform="translate(381.92, 616.52)" d="M 105.99 -83.2 C 122.55 -87.93 130.93 -99.76 130.93 -115.67 C 130.93 -139.1 112.87 -153.08 85.14 -153.08 L 13.98 -153.08 L 13.98 0 L 85.57 0 C 118.89 0 135.66 -20.64 135.66 -44.93 C 135.66 -62.13 127.49 -77.61 105.99 -83.2 Z M 79.55 -127.28 C 93.74 -127.28 99.76 -120.61 99.76 -110.94 C 99.76 -101.48 93.74 -93.95 78.26 -93.95 L 45.79 -93.95 L 45.79 -127.28 Z M 45.79 -26.88 L 45.79 -68.15 L 81.48 -68.15 C 96.1 -68.15 104.49 -60.84 104.49 -47.95 C 104.49 -35.69 96.96 -26.88 79.98 -26.88 Z M 45.79 -26.88 "/><path transform="translate(510.7, 616.52)" d="M 45.79 0 L 45.79 -153.08 L 13.98 -153.08 L 13.98 0 Z M 45.79 0 "/><path transform="translate(553.7, 616.52)" d="M 45.79 -153.08 L 13.98 -153.08 L 13.98 0 L 120.4 0 L 120.4 -28.38 L 45.79 -28.38 Z M 45.79 -153.08 "/><path transform="translate(654.1, 616.52)" d="M 79.76 4.95 C 120.61 4.95 152.86 -27.09 152.86 -76.75 C 152.86 -126.2 120.61 -156.73 79.76 -156.73 C 38.91 -156.73 7.52 -126.2 7.52 -76.75 C 7.52 -26.88 38.91 4.95 79.76 4.95 Z M 79.76 -22.57 C 54.61 -22.57 39.34 -44.29 39.34 -76.75 C 39.34 -107.93 54.61 -129.21 79.76 -129.21 C 104.92 -129.21 121.04 -108.14 121.04 -76.75 C 121.04 -44.29 104.92 -22.57 79.76 -22.57 Z M 79.76 -22.57 "/><path transform="translate(797.72, 616.52)" d="M 105.99 -83.2 C 122.55 -87.93 130.93 -99.76 130.93 -115.67 C 130.93 -139.1 112.87 -153.08 85.14 -153.08 L 13.98 -153.08 L 13.98 0 L 85.57 0 C 118.89 0 135.66 -20.64 135.66 -44.93 C 135.66 -62.13 127.49 -77.61 105.99 -83.2 Z M 79.55 -127.28 C 93.74 -127.28 99.76 -120.61 99.76 -110.94 C 99.76 -101.48 93.74 -93.95 78.26 -93.95 L 45.79 -93.95 L 45.79 -127.28 Z M 45.79 -26.88 L 45.79 -68.15 L 81.48 -68.15 C 96.1 -68.15 104.49 -60.84 104.49 -47.95 C 104.49 -35.69 96.96 -26.88 79.98 -26.88 Z M 45.79 -26.88 "/><path transform="translate(926.5, 616.52)" d="M 149.21 0 L 96.32 -153.08 L 59.55 -153.08 L 5.38 0 L 39.13 0 L 49.45 -31.82 L 104.92 -31.82 L 115.24 0 Z M 64.29 -76.97 L 77.4 -121.04 L 90.3 -76.97 L 96.53 -58.05 L 58.05 -58.05 Z M 64.29 -76.97 "/><path transform="translate(352.89, 803.27)" d="M 45.79 -65.36 L 117.39 -65.36 L 117.39 -93.74 L 45.79 -93.74 L 45.79 -124.7 L 125.34 -124.7 L 125.34 -153.08 L 13.98 -153.08 L 13.98 0 L 127.49 0 L 127.49 -28.38 L 45.79 -28.38 Z M 45.79 -65.36 "/><path transform="translate(472.22, 803.27)" d="M 85.78 -86.43 L 72.67 -35.9 L 59.55 -86.43 L 39.13 -153.08 L 5.38 -153.08 L 57.19 0 L 87.29 0 L 139.32 -153.08 L 105.56 -153.08 Z M 85.78 -86.43 "/><path transform="translate(600.14, 803.27)" d="M 45.79 -65.36 L 117.39 -65.36 L 117.39 -93.74 L 45.79 -93.74 L 45.79 -124.7 L 125.34 -124.7 L 125.34 -153.08 L 13.98 -153.08 L 13.98 0 L 127.49 0 L 127.49 -28.38 L 45.79 -28.38 Z M 45.79 -65.36 "/><path transform="translate(719.46, 803.27)" d="M 105.78 -86.0 C 105.78 -75.25 105.99 -64.29 106.21 -53.54 C 101.26 -62.13 96.1 -70.52 90.73 -79.12 L 45.15 -153.08 L 13.98 -153.08 L 13.98 0 L 45.79 0 L 45.79 -67.08 C 45.79 -77.61 45.79 -88.58 45.58 -99.33 C 50.95 -90.3 56.33 -81.27 61.92 -72.24 L 106.42 0 L 137.6 0 L 137.6 -153.08 L 105.78 -153.08 Z M 105.78 -86.0 "/><path transform="translate(854.26, 803.27)" d="M 4.3 -153.08 L 4.3 -124.7 L 50.31 -124.7 L 50.31 0 L 82.13 0 L 82.13 -124.7 L 127.92 -124.7 L 127.92 -153.08 Z M 4.3 -153.08 "/><path transform="translate(967.56, 803.27)" d="M 73.31 4.95 C 111.15 4.95 134.16 -13.54 134.16 -43.21 C 134.16 -68.8 116.31 -81.48 92.45 -87.29 L 61.92 -94.81 C 50.09 -97.82 44.07 -103.63 44.07 -112.01 C 44.07 -122.33 53.11 -130.5 69.45 -130.5 C 86.21 -130.5 98.68 -121.69 100.62 -106.21 L 131.58 -106.21 C 129.64 -136.31 106.21 -156.52 69.23 -156.52 C 29.88 -156.52 12.04 -133.08 12.04 -108.57 C 12.04 -87.07 25.8 -72.02 49.66 -66.0 L 77.83 -58.91 C 92.45 -55.25 101.26 -51.17 101.26 -40.2 C 101.26 -28.16 90.51 -21.07 73.1 -21.07 C 52.89 -21.07 40.42 -30.53 39.56 -47.52 L 8.39 -47.52 C 9.25 -14.41 34.4 4.95 73.31 4.95 Z M 73.31 4.95 "/></svg></a>
