@@ -60,7 +60,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---- type ---------------------------------------------------------------- */
 .display,.title,.h3,.btn,.nav a,.format__title,.promises,.ticker,.menu a,.pillar,.footer__nav{font-family:var(--display)}
 .display{font-weight:700;font-size:clamp(1.875rem,3.05vw,2.875rem);line-height:1.02;letter-spacing:-.03em}
-.title{font-weight:700;font-size:clamp(2.2rem,4.7vw,4.375rem);line-height:.97;letter-spacing:-.032em;text-wrap:balance}
+.title{font-weight:700;font-size:clamp(1.875rem,3.5vw,3.25rem);line-height:.97;letter-spacing:-.032em;text-wrap:balance}
 .title span{display:block}
 .h3{font-weight:500;font-size:clamp(1.25rem,1.55vw,1.5rem);line-height:1.2;letter-spacing:-.012em}
 .lead{font-size:clamp(1.125rem,1.45vw,1.375rem);line-height:1.45;letter-spacing:-.005em}
@@ -150,8 +150,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .facts dt{color:var(--muted);font-size:.9375rem}
 .facts dd{font-family:var(--display);font-weight:500}
 .about__media{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);margin-top:clamp(56px,8vw,120px);align-items:start}
-.about__media .frame:first-child{grid-column:1/span 8;aspect-ratio:16/10}
-.about__media .frame:last-child{grid-column:9/span 4;aspect-ratio:4/5;margin-top:clamp(40px,7vw,112px)}
+.about__media .frame:first-child{grid-column:1/span 6;aspect-ratio:3/2}
+.about__media .frame:last-child{grid-column:8/span 3;aspect-ratio:4/5;margin-top:clamp(32px,5vw,80px)}
 
 /* ---- what we do ---------------------------------------------------------- */
 .section-head{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);row-gap:20px;align-items:end;margin-bottom:clamp(40px,6vw,88px)}
@@ -165,7 +165,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .format__title{display:block;font-weight:500;font-size:clamp(1.375rem,2.05vw,1.875rem);line-height:1.12;letter-spacing:-.02em;transition:color .2s,transform .35s var(--ease)}
 .format p{max-width:48ch;padding-bottom:24px;color:var(--muted);transition:transform .35s var(--ease)}
 .format.is-active .format__title{color:var(--red)}
-.format figure{position:absolute;top:0;right:0;width:40%;height:100%;min-height:520px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);z-index:1}
+.format figure{position:absolute;top:0;right:0;width:30%;height:auto;aspect-ratio:4/5;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);z-index:1}
 .format.is-active figure{clip-path:inset(0);z-index:2}
 .format figure img{width:100%;height:100%;object-fit:cover}
 
@@ -179,7 +179,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .duo{--duo-gap:clamp(24px,4vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--duo-gap);row-gap:clamp(32px,4vw,56px)}
 .duo__title{grid-column:1/-1;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--duo-gap)}
 .duo__title span:last-child{grid-column:3}
-.duo__media{grid-column:2;grid-row:1/span 2;position:relative}
+.duo__media{grid-column:2;grid-row:1/span 2;position:relative;width:78%;justify-self:center}
 .duo__media::before{content:"";position:absolute;right:-16px;top:-16px;width:40%;aspect-ratio:1/1;background:var(--sky)}
 .duo__media .frame{position:relative;aspect-ratio:4/5}
 .duo__text{grid-column:1;grid-row:2;align-self:end}
@@ -213,11 +213,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---- work ---------------------------------------------------------------- */
 .work{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);row-gap:clamp(40px,5vw,72px)}
 .card{grid-column:span 4}
-.card .frame{aspect-ratio:4/5}
+.card .frame{aspect-ratio:1/1}
 .card--wide{grid-column:span 7}
-.card--wide .frame{aspect-ratio:7/5}
+.card--wide .frame{aspect-ratio:16/10}
 .card--tall{grid-column:span 5}
-.card--tall .frame{aspect-ratio:1/1}
+.card--tall .frame{aspect-ratio:8/7}
 .card__title{margin-top:14px;font-family:var(--display);font-weight:500;font-size:1.125rem;letter-spacing:-.01em}
 .card__meta{color:var(--muted);font-size:.9375rem}
 
@@ -309,13 +309,13 @@ button,input,select,textarea{font:inherit;color:inherit}
   .split__a,.split__b{grid-column:1/-1}
   .section-head .title,.section-head .lead,.section-head .prose{grid-column:1/-1}
   .about__media .frame:first-child{grid-column:1/span 12}
-  .about__media .frame:last-child{grid-column:5/span 8;margin-top:clamp(16px,2.4vw,32px)}
+  .about__media .frame:last-child{grid-column:7/span 6;margin-top:clamp(16px,2.4vw,32px)}
 
   .formats{margin-inline:calc(-1 * var(--gutter))}
   .formats__list{width:auto;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 8px;scroll-padding-inline:var(--gutter);scrollbar-width:none}
   .formats__list::-webkit-scrollbar{display:none}
   .format{flex:0 0 min(80%,360px);scroll-snap-align:start;display:flex;flex-direction:column;border:0!important}
-  .format figure{position:relative;order:-1;width:100%;height:auto;min-height:0;aspect-ratio:4/5;clip-path:none}
+  .format figure{position:relative;order:-1;width:100%;height:auto;min-height:0;aspect-ratio:1/1;clip-path:none}
   .format__btn{padding-top:16px;cursor:default}
   .format .format__title,.format.is-active .format__title{color:var(--ink)}
   .format p{padding-bottom:0}
@@ -325,7 +325,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   .duo__title{display:block}
   .duo__title br{display:none}
   .duo__title,.duo__media,.duo__text,.promises{grid-column:1;grid-row:auto}
-  .duo__media{order:1;width:min(100%,440px);margin-top:16px}
+  .duo__media{order:1;width:min(78%,340px);justify-self:start;margin-top:16px}
   .promises{order:2;font-size:clamp(1.375rem,4.4vw,1.9375rem)}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .step{min-height:clamp(220px,34vw,300px)}
@@ -334,7 +334,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   .card,.card--wide,.card--tall{grid-column:span 6}
   .card--wide{grid-column:1/-1}
   .card--wide .frame{aspect-ratio:16/10}
-  .card--tall .frame{aspect-ratio:4/5}
+  .card--tall .frame{aspect-ratio:1/1}
   .faq > div:first-child,.faq__list{grid-column:1/-1}
   .contact__copy,.form{grid-column:1/-1}
 }
@@ -886,7 +886,7 @@ button,input,select,textarea{font:inherit;color:inherit}
     </div>
     <div class="footer__base">
       <span>&copy; 2026 Biloba Events. Corporate events, brand experiences and event production.</span>
-      <span class="footer__legal"><a href="#contact">Privacy policy</a><a href="#contact">Cookie settings</a><span>Staging demo. Photography is temporary.</span></span>
+      <span class="footer__legal"><a href="#contact">Privacy policy</a><a href="#contact">Cookie settings</a></span>
     </div>
   </div>
 </footer>
