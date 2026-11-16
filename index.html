@@ -6,7 +6,7 @@
 <title>Biloba Events | Corporate events, brand experiences and event production in Portugal</title>
 <meta name="description" content="Biloba is a Lisbon-based creative event agency delivering full-service planning, design and production for international companies and brands.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#7A1515">
+<meta name="theme-color" content="#FAFAF8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%237A1515'/%3E%3Crect x='8' y='8' width='7' height='16' fill='%23FAFAF8'/%3E%3Crect x='17' y='8' width='7' height='7' fill='%23FAFAF8'/%3E%3Crect x='17' y='17' width='7' height='7' fill='%23A9C4E8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +50,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---- rooms (colour fields) ---------------------------------------------- */
 .room{--fg:var(--ink);--muted:rgba(26,26,26,.68);--line:rgba(26,26,26,.18);--focus:var(--red);background:var(--paper);color:var(--fg)}
 .room--sand{background:var(--sand)}
+.room--line{border-top:1px solid var(--line)}
 .room--sky{background:var(--sky);--muted:rgba(26,26,26,.78);--line:rgba(26,26,26,.26);--focus:var(--ink)}
 .room--ink{background:var(--ink);--fg:var(--paper);--muted:rgba(250,250,248,.7);--line:rgba(250,250,248,.22);--focus:var(--sky)}
 .room--red{background:var(--red);--fg:var(--paper);--muted:rgba(250,250,248,.82);--line:rgba(250,250,248,.3);--focus:var(--paper)}
@@ -81,30 +82,26 @@ button,input,select,textarea{font:inherit;color:inherit}
 .link:hover{text-decoration-thickness:3px}
 
 /* ---- header -------------------------------------------------------------- */
-.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);color:var(--paper);transition:background .25s,color .25s,box-shadow .25s;--focus:var(--paper)}
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);background:var(--paper);color:var(--ink);box-shadow:0 1px 0 rgba(26,26,26,.14);--focus:var(--red)}
 .site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.site-header.is-tinted{background:var(--red)}
-.site-header.is-solid{background:var(--paper);color:var(--ink);box-shadow:0 1px 0 rgba(26,26,26,.14);--focus:var(--red)}
 .brand{display:block;color:inherit;line-height:0}
 .brand svg{height:36px;width:auto;display:block}
-.site-header.is-solid .brand{color:var(--red)}
+.site-header .brand,.menu .brand{color:var(--red)}
 .nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px)}
 .nav a{font-weight:500;font-size:.9375rem;text-decoration:none;padding:6px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat;transition:background-size .25s var(--ease)}
 .nav a:hover,.nav a[aria-current="true"]{background-size:100% 1.5px}
-.header-cta{min-height:44px;padding:10px 18px;border-color:currentColor;background:transparent;color:inherit;font-size:.9375rem}
-.header-cta:hover{background:var(--paper);color:var(--red);border-color:var(--paper)}
-.site-header.is-solid .header-cta{background:var(--red);border-color:var(--red);color:var(--paper)}
-.site-header.is-solid .header-cta:hover{background:var(--ink);border-color:var(--ink)}
+.header-cta{min-height:44px;padding:10px 18px;background:var(--red);border-color:var(--red);color:var(--paper);font-size:.9375rem}
+.header-cta:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .menu-toggle{display:none;min-height:44px;padding:8px 0 8px 16px;border:0;background:none;font-family:var(--display);font-weight:500;font-size:1rem;cursor:pointer}
 
 /* ---- mobile menu --------------------------------------------------------- */
-.menu{position:fixed;inset:0;z-index:60;background:var(--red);color:var(--paper);display:flex;flex-direction:column;padding:0 var(--gutter) 28px;visibility:hidden;opacity:0;transition:opacity .25s,visibility 0s .25s;--focus:var(--paper)}
+.menu{position:fixed;inset:0;z-index:60;background:var(--sand);color:var(--ink);display:flex;flex-direction:column;padding:0 var(--gutter) 28px;visibility:hidden;opacity:0;transition:opacity .25s,visibility 0s .25s;--focus:var(--red)}
 .menu-open .menu{visibility:visible;opacity:1;transition:opacity .25s}
 .menu__top{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;flex:none}
 .menu__top .menu-toggle{display:block}
 .menu ul{margin-top:4vh;flex:1}
-.menu li{border-top:1px solid rgba(250,250,248,.3)}
-.menu li:last-child{border-bottom:1px solid rgba(250,250,248,.3)}
+.menu li{border-top:1px solid rgba(26,26,26,.18)}
+.menu li:last-child{border-bottom:1px solid rgba(26,26,26,.18)}
 .menu li a{display:block;padding:15px 0;font-weight:700;font-size:clamp(1.75rem,8vw,2.5rem);letter-spacing:-.03em;line-height:1;text-decoration:none}
 .menu__foot{display:grid;gap:6px;font-size:.9375rem}
 .menu__foot a{font-family:var(--body)}
@@ -129,11 +126,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .pillar{display:block;width:100%;padding:13px 0;border:0;background:none;color:inherit;text-align:left;font-weight:500;font-size:1.0625rem;line-height:1.5;letter-spacing:-.005em;cursor:pointer;opacity:.66;transition:opacity .3s,transform .45s var(--ease)}
 .pillar:hover,.pillar.is-active{opacity:1}
 .pillar.is-active{transform:translateX(10px)}
-.pillar__bar{position:absolute;left:0;top:-1px;width:100%;height:2px;background:var(--paper);transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+.pillar__bar{position:absolute;left:0;top:-1px;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
 .pillar.is-active + .pillar__bar{animation:pillar 6s linear forwards}
 .hero.is-paused .pillar__bar,.js:not(.is-ready) .pillar__bar{animation-play-state:paused}
 @keyframes pillar{to{transform:scaleX(1)}}
-.hero__media{position:relative;min-height:320px;overflow:hidden;background:rgba(0,0,0,.28)}
+.hero__media{position:relative;min-height:320px;overflow:hidden;background:rgba(26,26,26,.12)}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 0s 1.1s,transform 7.5s linear}
 .slide.is-active{z-index:1;opacity:1;transform:none;transition:opacity 1.1s var(--ease),transform 7.5s linear}
 .line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
@@ -459,14 +456,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 <main id="main">
 
 <!-- 01 HERO ============================================================== -->
-<section class="hero room room--red" id="top">
+<section class="hero room room--sand" id="top">
   <div class="hero__inner">
     <div class="hero__copy">
       <div class="hero__text">
         <h1 class="display"><span>Your Event in Portugal.</span><span>Our Expertise From Start to Finish.</span></h1>
         <p class="lead">A Lisbon-based creative event agency delivering full-service planning, design and production for international companies and brands.</p>
         <div class="hero__actions">
-          <a class="btn" href="#contact">Discuss your project</a>
+          <a class="btn btn--red" href="#contact">Discuss your project</a>
           <a class="link" href="#what-we-do">See what we do</a>
         </div>
       </div>
@@ -730,7 +727,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </section>
 
 <!-- FAQ (proposed addition) ============================================== -->
-<section class="section room room--sand" id="faq">
+<section class="section room room--line" id="faq">
   <div class="wrap">
     <div class="faq">
       <div>
@@ -763,7 +760,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </section>
 
 <!-- 08 CONTACT =========================================================== -->
-<section class="section room room--red" id="contact">
+<section class="section room room--sand" id="contact">
   <div class="wrap">
     <div class="contact">
       <div class="contact__copy">
@@ -929,7 +926,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 
   /* header: transparent on the red hero, solid afterwards */
   var header=d.getElementById('header'), hero=d.getElementById('top');
-  function setHeader(){ var solid=hero.getBoundingClientRect().bottom < 72; header.classList.toggle('is-solid', solid); header.classList.toggle('is-tinted', !solid && window.scrollY > 8); }
 
   /* mobile CTA bar: after the hero, hidden while the contact section is on screen */
   var bar=d.getElementById('cta-bar'), contact=d.getElementById('contact');
@@ -972,7 +968,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   if(d.fonts && d.fonts.ready){ d.fonts.ready.then(placeRelay); }
 
   var ticking=false;
-  function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(function(){ setHeader(); setBar(); ticking=false; }); }
+  function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(function(){ setBar(); ticking=false; }); }
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
