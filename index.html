@@ -59,7 +59,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 [id]{scroll-margin-top:calc(var(--header-h) + 8px)}
 
 /* ---- type ---------------------------------------------------------------- */
-.display,.title,.h3,.btn,.nav a,.format__title,.step__n,.triad,.ticker,.menu a,.pillar,.footer__nav{font-family:var(--display)}
+.display,.title,.h3,.btn,.nav a,.format__title,.step__n,.tile,.odo,.ticker,.menu a,.pillar,.footer__nav{font-family:var(--display)}
 .display{font-weight:700;font-size:clamp(1.875rem,3.05vw,2.875rem);line-height:1.02;letter-spacing:-.03em}
 .title{font-weight:700;font-size:clamp(2.2rem,4.7vw,4.375rem);line-height:.97;letter-spacing:-.032em;text-wrap:balance}
 .title span{display:block}
@@ -175,28 +175,37 @@ button,input,select,textarea{font:inherit;color:inherit}
 .cap .h3{min-height:calc(2.4em + 20px);padding-top:18px;border-top:2px solid var(--fg)}
 .cap ul{margin-top:18px}
 .cap li{padding:10px 0;border-top:1px solid var(--line);font-size:.9375rem;color:var(--muted)}
-.band{margin-top:clamp(56px,7vw,104px)}
-.band .frame{aspect-ratio:21/8}
 
 /* ---- approach ------------------------------------------------------------ */
-.approach{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);row-gap:48px;align-items:start}
-.approach__copy{grid-column:1/span 7}
-.approach__copy .lead{margin-top:clamp(28px,3.5vw,48px);max-width:34ch}
-.approach__copy .prose{margin-top:20px;max-width:52ch}
-.approach__media{grid-column:9/span 4}
-.approach__media .frame{aspect-ratio:4/5}
-.triad{margin-top:clamp(56px,8vw,112px);font-weight:700;font-size:clamp(1.75rem,4vw,3.5rem);line-height:1;letter-spacing:-.03em}
-.triad li{padding:.42em 0 .46em;border-top:1.5px solid var(--ink)}
-.triad li:last-child{border-bottom:1.5px solid var(--ink)}
+.section-head--top{align-items:start}
+.approach__text{grid-column:8/span 5}
+.approach__text .prose{margin-top:16px}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,32px)}
+.mosaic > *{aspect-ratio:1/1}
+.tile{display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,1.8vw,26px);background:var(--paper);color:var(--ink);font-weight:700;font-size:clamp(1.125rem,2.3vw,2.125rem);line-height:1;letter-spacing:-.03em}
+.tile::before{content:"";width:.42em;height:.42em;background:var(--red)}
+.tile--ink{background:var(--ink);color:var(--paper)}
+.tile--ink::before{background:var(--sky)}
+@media (max-width:820px){
+  .mosaic{grid-template-columns:repeat(2,1fr)}
+  .tile{font-size:clamp(1.125rem,5.2vw,2.125rem)}
+}
 
 /* ---- process ------------------------------------------------------------- */
-.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);column-gap:clamp(16px,2.4vw,32px);padding-top:28px;--p:0}
-.steps::before,.steps::after{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:var(--line)}
-.steps::after{background:var(--red);transform-origin:0 50%;transform:scaleX(var(--p))}
-.step__n{display:block;font-weight:700;font-size:clamp(2.5rem,4.4vw,4rem);line-height:1;letter-spacing:-.04em;color:rgba(26,26,26,.26);transition:color .4s}
+.process{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2.4vw,32px);align-items:start}
+.process__head{grid-column:1/span 5;position:sticky;top:calc(var(--header-h) + 48px)}
+.odo{height:1em;margin-top:clamp(28px,4vw,56px);overflow:hidden;font-weight:700;font-size:clamp(7rem,14vw,12.5rem);line-height:1;letter-spacing:-.055em;color:var(--red)}
+.odo__reel{transform:translateY(calc(var(--i,0) * -1em));transition:transform .7s var(--ease)}
+.odo span{display:block;height:1em}
+.steps{grid-column:7/span 6;position:relative;border-left:2px solid var(--line)}
+.steps::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--h,0px);transform:translateY(var(--y,0px));background:var(--red);transition:transform .55s var(--ease),height .55s var(--ease)}
+.step{padding:clamp(22px,2.6vw,34px) 0 clamp(22px,2.6vw,34px) clamp(22px,2.8vw,40px)}
+.step > *{transition:transform .55s var(--ease)}
+.step.is-on > *{transform:translateX(8px)}
+.step__n{display:block;font-weight:700;font-size:1.0625rem;line-height:1;letter-spacing:-.01em;color:rgba(26,26,26,.4);transition:color .4s,transform .55s var(--ease)}
 .step.is-on .step__n{color:var(--red)}
-.step .h3{margin-top:18px}
-.step p{margin-top:10px;color:var(--muted);max-width:32ch}
+.step .h3{margin-top:10px;font-size:clamp(1.375rem,2vw,1.875rem);line-height:1.12;letter-spacing:-.02em}
+.step p{margin-top:10px;color:var(--muted);max-width:46ch}
 
 /* ---- cities -------------------------------------------------------------- */
 .cities{padding-block:clamp(36px,4.2vw,60px);overflow:hidden}
@@ -318,12 +327,13 @@ button,input,select,textarea{font:inherit;color:inherit}
   .format p{padding-bottom:0}
 
   .caps{grid-template-columns:repeat(2,1fr)}
-  .band .frame{aspect-ratio:16/9}
-  .approach__copy{grid-column:1/-1}
-  .approach__media{grid-column:1/span 8}
-  .steps{grid-template-columns:1fr;padding-top:0;padding-left:28px;row-gap:36px}
-  .steps::before,.steps::after{width:2px;height:100%;top:0}
-  .steps::after{transform-origin:50% 0;transform:scaleY(var(--p))}
+  .approach__text{grid-column:1/-1}
+  .process__head{grid-column:1/-1;position:static}
+  .odo{display:none}
+  .steps{grid-column:1/-1;margin-top:clamp(32px,6vw,48px)}
+  .step__n{font-size:2.25rem;letter-spacing:-.04em;color:rgba(26,26,26,.26)}
+  .step .h3{margin-top:14px}
+  .step.is-on > *{transform:none}
   .card,.card--wide,.card--tall{grid-column:span 6}
   .card--wide{grid-column:1/-1}
   .card--wide .frame{aspect-ratio:16/10}
@@ -339,7 +349,6 @@ button,input,select,textarea{font:inherit;color:inherit}
   .facts div{grid-template-columns:6.5rem 1fr}
   .caps{grid-template-columns:1fr}
   .cap .h3{min-height:0}
-  .approach__media{grid-column:1/-1}
   .form{margin-inline:calc(-1 * var(--gutter) + 8px)}
   .form__grid{grid-template-columns:1fr}
   .direct a{grid-template-columns:5.5rem minmax(0,1fr) auto;gap:12px}
@@ -367,6 +376,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .js [data-lines].is-in .line__in{transform:none}
 .js [data-rise]{opacity:0;transform:translateY(28px);transition:opacity .8s,transform 1s var(--ease)}
 .js [data-rise].is-in{opacity:1;transform:none}
+.js [data-stagger] .tile{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .9s var(--ease)}
+.js [data-stagger] .tile:nth-of-type(1){transition-delay:.1s}
+.js [data-stagger] .tile:nth-of-type(2){transition-delay:.24s}
+.js [data-stagger] .tile:nth-of-type(3){transition-delay:.38s}
+.js [data-stagger].is-in .tile{opacity:1;transform:none}
 @media (max-width:960px){
   .js .hero__media{clip-path:inset(0 0 100% 0)}
   .js.is-ready .hero__media{clip-path:inset(0)}
@@ -375,8 +389,9 @@ button,input,select,textarea{font:inherit;color:inherit}
   html{scroll-behavior:auto}
   .ticker{animation:none;flex-wrap:wrap;width:auto;row-gap:10px;padding-inline:var(--gutter)}
   .ticker span[aria-hidden]{display:none}
-  .js [data-reveal] img,.js .hero__media,.js .hero__text > *,.js .hero .pillars,.js [data-lines] .line__in,.js [data-rise],.format figure{transition:none!important;clip-path:none;transform:none;opacity:1}
+  .js [data-reveal] img,.js .hero__media,.js .hero__text > *,.js .hero .pillars,.js [data-lines] .line__in,.js [data-rise],.js [data-stagger] .tile,.format figure{transition:none!important;clip-path:none;transform:none;opacity:1}
   .slide,.pillar,.direct a,.direct__go{transition:none!important;transform:none!important}
+  .odo__reel,.steps::after,.step > *{transition:none!important}
   .pillar__bar{animation:none!important}
   .pillar.is-active + .pillar__bar{transform:scaleX(1)}
   .format figure{display:none}
@@ -521,7 +536,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 </section>
 
 <!-- 04 EXPERTISE ========================================================= -->
-<section class="section room room--ink" id="expertise" style="padding-bottom:0">
+<section class="section room room--ink" id="expertise">
   <div class="wrap">
     <div class="section-head">
       <h2 class="title"><span>One Team.</span><span>Complete Event Management.</span></h2>
@@ -574,67 +589,63 @@ button,input,select,textarea{font:inherit;color:inherit}
       </div>
     </div>
   </div>
-  <div class="band">
-    <div class="frame" data-reveal>
-      <img src="https://images.unsplash.com/photo-1558620013-a08999547a36?auto=format&amp;fit=crop&amp;q=72&amp;w=2000" srcset="https://images.unsplash.com/photo-1558620013-a08999547a36?auto=format&amp;fit=crop&amp;q=72&amp;w=1000 1000w, https://images.unsplash.com/photo-1558620013-a08999547a36?auto=format&amp;fit=crop&amp;q=72&amp;w=2000 2000w, https://images.unsplash.com/photo-1558620013-a08999547a36?auto=format&amp;fit=crop&amp;q=72&amp;w=2400 2400w" sizes="100vw" alt="Beams of stage light fanning out over a crowd, in black and white" loading="lazy" decoding="async">
-    </div>
-  </div>
 </section>
 
 <!-- 05 APPROACH ========================================================== -->
 <section class="section room room--sky" id="approach">
   <div class="wrap">
-    <div class="approach">
-      <div class="approach__copy">
-        <h2 class="title"><span>Creative Thinking.</span><span>Operational Precision.</span></h2>
+    <div class="section-head section-head--top">
+      <h2 class="title"><span>Creative Thinking.</span><span>Operational Precision.</span></h2>
+      <div class="approach__text">
         <p class="lead">Every successful event starts with a clear understanding of its purpose.</p>
         <div class="prose">
           <p>We translate your objectives into a defined creative and operational plan, balancing design, budget, logistics and production requirements.</p>
           <p>Our team manages the complexities of producing events in Portugal, coordinating local partners and overseeing every detail from the first brief to final delivery.</p>
         </div>
       </div>
-      <div class="approach__media">
-        <div class="frame" data-reveal>
-          <img src="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000" srcset="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=500 500w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000 1000w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1500 1500w" sizes="(max-width:960px) 66vw, 33vw" alt="A stage set with chairs and a table under blue spotlights" loading="lazy" decoding="async">
-        </div>
-      </div>
     </div>
-    <ul class="triad">
-      <li>One dedicated team.</li>
-      <li>One coordinated process.</li>
-      <li>Complete oversight.</li>
-    </ul>
+    <div class="mosaic" data-stagger>
+      <figure class="frame" data-reveal>
+        <img src="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000" srcset="https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=500 500w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1000 1000w, https://images.unsplash.com/photo-1558970439-add78fc68990?auto=format&amp;fit=crop&amp;q=72&amp;w=1500 1500w" sizes="(max-width:820px) 50vw, 25vw" alt="A stage set with chairs and a table under blue spotlights" loading="lazy" decoding="async">
+      </figure>
+      <p class="tile">One dedicated team.</p>
+      <p class="tile">One coordinated process.</p>
+      <p class="tile tile--ink">Complete oversight.</p>
+    </div>
   </div>
 </section>
 
 <!-- 06 HOW WE WORK ======================================================= -->
 <section class="section room" id="how-we-work">
   <div class="wrap">
-    <div class="section-head">
-      <h2 class="title"><span>From Brief</span><span>to Delivery.</span></h2>
+    <div class="process">
+      <div class="process__head">
+        <h2 class="title"><span>From Brief</span><span>to Delivery.</span></h2>
+        <div class="odo" aria-hidden="true"><div class="odo__reel"><span>01</span><span>02</span><span>03</span><span>04</span></div></div>
+      </div>
+      <ol class="steps" id="steps">
+        <li class="step is-on">
+          <span class="step__n" aria-hidden="true">01</span>
+          <h3 class="h3">Understanding Your Brief</h3>
+          <p>We establish your objectives, audience, event format, budget, timeline and operational requirements.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" aria-hidden="true">02</span>
+          <h3 class="h3">Concept &amp; Planning</h3>
+          <p>We identify venues, develop the creative direction and define the event structure, production requirements and budget framework.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" aria-hidden="true">03</span>
+          <h3 class="h3">Production Development</h3>
+          <p>We source and secure suppliers, manage contracts and budgets, develop detailed schedules and coordinate every technical, creative and logistical element.</p>
+        </li>
+        <li class="step">
+          <span class="step__n" aria-hidden="true">04</span>
+          <h3 class="h3">On-Site Delivery</h3>
+          <p>Our team oversees installation, rehearsals, supplier operations, guest experience, event execution and dismantling.</p>
+        </li>
+      </ol>
     </div>
-    <ol class="steps" id="steps">
-      <li class="step">
-        <span class="step__n" aria-hidden="true">01</span>
-        <h3 class="h3">Understanding Your Brief</h3>
-        <p>We establish your objectives, audience, event format, budget, timeline and operational requirements.</p>
-      </li>
-      <li class="step">
-        <span class="step__n" aria-hidden="true">02</span>
-        <h3 class="h3">Concept &amp; Planning</h3>
-        <p>We identify venues, develop the creative direction and define the event structure, production requirements and budget framework.</p>
-      </li>
-      <li class="step">
-        <span class="step__n" aria-hidden="true">03</span>
-        <h3 class="h3">Production Development</h3>
-        <p>We source and secure suppliers, manage contracts and budgets, develop detailed schedules and coordinate every technical, creative and logistical element.</p>
-      </li>
-      <li class="step">
-        <span class="step__n" aria-hidden="true">04</span>
-        <h3 class="h3">On-Site Delivery</h3>
-        <p>Our team oversees installation, rehearsals, supplier operations, guest experience, event execution and dismantling.</p>
-      </li>
-    </ol>
   </div>
 </section>
 
@@ -907,16 +918,17 @@ button,input,select,textarea{font:inherit;color:inherit}
     bar.classList.toggle('is-on', hero.getBoundingClientRect().bottom < 0 && !(c.top < vh*0.85 && c.bottom > 0));
   }
 
-  /* process: progress line follows the scroll position */
-  var steps=d.getElementById('steps'), stepEls=steps.querySelectorAll('.step');
+  /* process: the step crossing mid-screen is the current one; the big numeral and the marker follow it */
+  var proc=d.getElementById('how-we-work'), steps=d.getElementById('steps'), stepEls=steps.querySelectorAll('.step'), stepIdx=-1;
   function setSteps(){
-    var r=steps.getBoundingClientRect(), vh=window.innerHeight;
-    var vertical=window.innerWidth<=960;
-    var start=vh*0.82, end=vertical ? vh*0.45 - r.height : vh*0.3;
-    var p=(start - r.top)/(start - end);
-    p=reduce ? 1 : Math.max(0, Math.min(1, p));
-    steps.style.setProperty('--p', p.toFixed(3));
-    for(var i=0;i<stepEls.length;i++){ stepEls[i].classList.toggle('is-on', p > i/stepEls.length + 0.04 || reduce); }
+    var line=window.innerHeight*0.55, idx=0, i;
+    for(i=0;i<stepEls.length;i++){ if(stepEls[i].getBoundingClientRect().top < line) idx=i; }
+    steps.style.setProperty('--y', stepEls[idx].offsetTop+'px');
+    steps.style.setProperty('--h', stepEls[idx].offsetHeight+'px');
+    if(idx===stepIdx) return;
+    stepIdx=idx;
+    proc.style.setProperty('--i', idx);
+    for(i=0;i<stepEls.length;i++){ stepEls[i].classList.toggle('is-on', i===idx); }
   }
 
   var ticking=false;
@@ -946,8 +958,8 @@ button,input,select,textarea{font:inherit;color:inherit}
     new IntersectionObserver(function(es){ hero.classList.toggle('is-paused', !es[0].isIntersecting); }).observe(hero);
   }
 
-  /* contact: title lines and form rise as the section arrives */
-  var rises=d.querySelectorAll('[data-lines],[data-rise]');
+  /* approach tiles, contact title and form: rise as they arrive */
+  var rises=d.querySelectorAll('[data-lines],[data-rise],[data-stagger]');
   if('IntersectionObserver' in window && !reduce){
     var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); ro.unobserve(e.target); } }); }, {threshold:0.08, rootMargin:'0px 0px -8% 0px'});
     rises.forEach(function(el){ ro.observe(el); });
